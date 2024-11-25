@@ -7,14 +7,14 @@ body {
 /* Navbar */
 .navbar {
     padding: 1.5rem 2rem;
-    background: linear-gradient(90deg, #0d0d0d, #333333); /* Sleeker dark gradient */
+    background: linear-gradient(90deg, #1b1b1b, #333333); /* Sleeker dark gradient */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Stronger shadow for modernity */
     font-family: 'Poppins', sans-serif;
     transition: background-color 0.3s ease-in-out; /* Smooth transition on hover */
 }
 
 .navbar:hover {
-    background: linear-gradient(90deg, #141414, #4c4c4c); /* Darker on hover */
+    background: linear-gradient(90deg, #141414, #555555); /* Darker on hover */
 }
 
 .navbar-brand {
@@ -24,9 +24,11 @@ body {
     letter-spacing: 0.08rem;
     text-transform: uppercase;
 }
-
+.navbar-brand:hover{
+  color:#dcdcdc;
+}
 .nav-link {
-    color: #ffffff;
+    color: #dcdcdc;
     margin-right: 1.5rem;
     font-size: 1.1rem;
     font-weight: 500;
@@ -34,7 +36,7 @@ body {
 }
 
 .nav-link:hover {
-    color: #ffc107; /* Golden hover effect */
+    color:#ff6347; /* Golden hover effect */
 }
 
 .navbar-toggler {
@@ -86,9 +88,10 @@ body {
 .welcome-section h1 {
     position: relative;
     z-index: 2;
-    color: #ffc107;
+    color: #ff6347;
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
-    font-size: clamp(2.5rem, 6vw, 4rem); /* Dynamic scaling */
+    /* font-size: clamp(2.5rem, 6vw, 4rem); Dynamic scaling */
+    font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 800;
     letter-spacing: 0.1rem;
 }
@@ -97,14 +100,6 @@ body {
     z-index: 2;
     color: white;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.welcome-section h1 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 700;
-}
-
-.welcome-section h2 {
     font-size: clamp(1rem, 2.5vw, 1.75rem);
     font-weight: 400;
 }
@@ -124,9 +119,11 @@ body {
     font-size: 1.2rem;
     border-radius: 50px;
     border: 2px solid transparent;
-    background: linear-gradient(90deg, #ffffff, #f7f7f7);
+    /* background: linear-gradient(90deg, #ffffff, #f7f7f7); */
     transition: all 0.4s ease;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Elevated shadow */
+    box-shadow: 0 6px 12px rgba(199, 197, 197, 0.1); /* Elevated shadow */
+    background: #f0f0f0;
+    border-color: #cccccc;
     color: #333;
     margin-right: 10px; /* Space between input and button */
 }
@@ -186,77 +183,111 @@ body {
 }
   
 
-/* Center Cards */
-.center-cards {
+/* General Styling for the Section */
+.container {
+    margin-top: 20px;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .text-muted {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: #555;
+  }
+  
+  /* Card Styling */
+  .center-card {
     display: flex;
-    overflow-x: hidden;
-    /* Hide scrollbar */
-    padding: 20px 0;
-    scroll-behavior: smooth;
-    flex-wrap: nowrap;
-    gap: 15px;
-    /* Spacing between cards */
-}
-
-.center-card {
-    flex: 0 0 auto;
-    width: 270px;
-    margin: 10px;
-    border: none;
-    border-radius: 12px;
+    border: 1px solid #cccbcb;
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-.center-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-}
-
-.center-card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-}
-
-.card-body {
-    padding: 20px;
-    background-color: #ffffff;
-}
-
-.card-title {
-    font-size: 1.3rem;
-    font-weight: 700;
-}
-
-.card-text {
-    font-size: 1rem;
-    color: #6c757d;
-}
-
-.rating {
-    color: #ffc107;
-    font-size: 1.2rem;
-}
-
-/* Scroll Buttons */
-.scroll-button {
-    background-color: #343a40;
-    border: none;
-    color: white;
-    font-size: 2.5rem;
-    padding: 15px;
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
     cursor: pointer;
-    border-radius: 50%;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-.scroll-button:hover {
-    background-color: #495057;
-    transform: scale(1.1);
-}
-
+  }
+  
+  .center-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(255, 99, 71, 0.3);
+  }
+  
+  .center-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-right: 1px solid #e0e0e0;
+  }
+  
+  .center-card .card-body {
+    padding: 15px 20px;
+    flex: 1;
+  }
+  
+  .center-card .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .center-card .card-text {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 5px;
+  }
+  
+  .center-card .rating {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+  
+  .center-card .rating .fas,
+  .center-card .rating .far {
+    color: #ffbf00; /* Gold for stars */
+  }
+  
+  .center-card .rating .fas.fa-star-half-alt {
+    color: #ffbf00;
+  }
+  
+  .addiction-info {
+    display: none; /* Hidden by default */
+  }
+  
+  /* Spacing between cards */
+  .card {
+    margin-bottom: 20px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .center-card {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .center-card img {
+      width: 100%;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid #e0e0e0;
+    }
+  
+    .center-card .card-body {
+      padding: 15px;
+    }
+  }
+  
 /* Responsive Design */
 @media (max-width: 768px) {
     .welcome-section {

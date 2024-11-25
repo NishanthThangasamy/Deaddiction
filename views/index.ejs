@@ -36,89 +36,50 @@
   </div>
 </div>
     
-    <!-- Centers Section -->
+<!-- Centers Section -->
+
 <div class="container mt-5">
-  <h2>Centers in Coimbatore</h2>
+  <h2>Registered Centers</h2>
   <p id="centerCountCoimbatore" class="text-muted"></p> <!-- Unique ID for count -->
 
-  <div class="d-flex justify-content-between align-items-center mb-2">
-    <!-- Unique ID for scroll buttons and cards -->
-    <button class="scroll-button" id="scrollLeftCoimbatore" onclick="scrollLeftCards('.coimbatore-cards')">&#8249;</button>
-    <div class="center-cards coimbatore-cards">
-      <% centers.forEach(center => { %>
+  <div class="row"> <!-- Use a row for listing centers -->
+    <% centers.forEach(center => { %>
+    <div class="col-md-12 mb-4"> <!-- Each center occupies full width -->
       <div class="card center-card" onclick="Description('<%= center.email %>')">
-        <img src="./<%= center.centerImages[0] %>" class="card-img-top" alt="<%= center.centerName %>">
-        <div class="card-body">
-          <h5 class="card-title"><%= center.centerName %></h5>
-          <p class="card-text">
-            <strong>Location:</strong> <%= center.address %><br>
-            <strong>Consultant Fee:</strong> <%= center.priceRange %>
-          </p>
-          <p class="card-text">
-            Rating: 
-            <span class="rating">
-              <% for (let i = 1; i <= 5; i++) { %>
-                <% if (i <= Math.floor(center.rating)) { %>
-                  <i class="fas fa-star"></i>
-                <% } else if (i === Math.ceil(center.rating) && center.rating % 1 !== 0) { %>
-                  <i class="fas fa-star-half-alt"></i>
-                <% } else { %>
-                  <i class="far fa-star"></i>
-                <% } %>
-              <% } %>
-            </span>
-          </p>
-          <p class="addiction-info" data-addictions='<%= JSON.stringify(center.addictions) %>' style="display:none">
-            Addiction: <%= center.addictions.join(', ') %>
-          </p>
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="./<%= center.centerImages[0] %>" class="img-fluid rounded-start" alt="<%= center.centerName %>">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title"><%= center.centerName %></h5>
+              <p class="card-text">
+                <strong>Location:</strong> <%= center.address %><br>
+                <strong>Consultant Fee:</strong> <%= center.priceRange %>
+              </p>
+              <p class="card-text">
+                Rating: 
+                <span class="rating">
+                  <% for (let i = 1; i <= 5; i++) { %>
+                    <% if (i <= Math.floor(4)) { %>
+                      <i class="fas fa-star"></i>
+                    <% } else if (i === Math.ceil(center.rating) && center.rating % 1 !== 0) { %>
+                      <i class="fas fa-star-half-alt"></i>
+                    <% } else { %>
+                      <i class="far fa-star"></i>
+                    <% } %>
+                  <% } %>
+                </span>
+              </p>
+              <p class="addiction-info" data-addictions='<%= JSON.stringify(center.addictions) %>' style="display:none">
+                Addiction: <%= center.addictions.join(', ') %>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-      <% }) %>
     </div>
-    <button class="scroll-button" id="scrollRightCoimbatore" onclick="scrollRightCards('.coimbatore-cards')">&#8250;</button>
-  </div>
-</div>
-
-<!-- Nearby Centers Section -->
-<div class="container mt-5">
-  <h2>Nearby Centers</h2>
-  <p id="centerCountNearby" class="text-muted"></p> <!-- Unique ID for count -->
-
-  <div class="d-flex justify-content-between align-items-center mb-2">
-    <!-- Unique ID for scroll buttons and cards -->
-    <button class="scroll-button" id="scrollLeftNearby" onclick="scrollLeftCards('.nearby-cards')">&#8249;</button>
-    <div class="center-cards nearby-cards">
-      <% centers.forEach(center => { %>
-      <div class="card center-card" onclick="Description('<%= center.email %>')">
-        <img src="./<%= center.centerImages[0] %>" class="card-img-top" alt="<%= center.centerName %>">
-        <div class="card-body">
-          <h5 class="card-title"><%= center.centerName %></h5>
-          <p class="card-text">
-            <strong>Location:</strong> <%= center.address %><br>
-            <strong>Consultant Fee:</strong> <%= center.priceRange %>
-          </p>
-          <p class="card-text">
-            Rating: 
-            <span class="rating">
-              <% for (let i = 1; i <= 5; i++) { %>
-                <% if (i <= Math.floor(center.rating)) { %>
-                  <i class="fas fa-star"></i>
-                <% } else if (i === Math.ceil(center.rating) && center.rating % 1 !== 0) { %>
-                  <i class="fas fa-star-half-alt"></i>
-                <% } else { %>
-                  <i class="far fa-star"></i>
-                <% } %>
-              <% } %>
-            </span>
-          </p>
-          <p class="addiction-info" data-addictions='<%= JSON.stringify(center.addictions) %>' style="display:none">
-            Addiction: <%= center.addictions.join(', ') %>
-          </p>
-        </div>
-      </div>
-      <% }) %>
-    </div>
-    <button class="scroll-button" id="scrollRightNearby" onclick="scrollRightCards('.nearby-cards')">&#8250;</button>
+    <% }) %>
   </div>
 </div>
 
@@ -191,15 +152,16 @@
 
                   const matchesAddiction = addictions.some(addiction => addiction.toLowerCase().includes(searchTerm));
                   if (centerName.includes(searchTerm) || location.includes(searchTerm) || matchesAddiction) {
-                    card.style.display = 'block';
+                    card.parentElement.style.display = 'block'; // Show the parent div
                     visibleCount++;
                   } else {
-                    card.style.display = 'none';
+                    card.parentElement.style.display = 'none'; // Hide the parent div
                   }
                 });
-                document.getElementById('centerCount').textContent = `${visibleCount} centers found`;
 
-              }
+                  document.getElementById('centerCountCoimbatore').textContent = `${visibleCount} centers found`;
+                }
+
 
             </script>
             <script src="/js/indexpage.js"></script>
