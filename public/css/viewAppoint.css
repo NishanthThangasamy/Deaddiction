@@ -57,7 +57,6 @@
 body {
    background-color: #f4f6f9;
    font-family: 'Poppins', sans-serif;
-   color: #333;
 }
 
 .appointment-card {
@@ -179,7 +178,6 @@ body {
 
 .text-center p {
    font-size: 1.2rem;
-   color: #666;
    margin-bottom: 25px;
 }
 
