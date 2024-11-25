@@ -1,0 +1,277 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    /* Prevent horizontal scrollbar */
+}
+
+/* Navbar */
+.navbar {
+    padding: 1.5rem 2rem;
+    background: linear-gradient(90deg, #0d0d0d, #333333); /* Sleeker dark gradient */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Stronger shadow for modernity */
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.3s ease-in-out; /* Smooth transition on hover */
+}
+
+.navbar:hover {
+    background: linear-gradient(90deg, #141414, #4c4c4c); /* Darker on hover */
+}
+
+.navbar-brand {
+    color: #ffc107;
+    font-weight: 800;
+    font-size: 2.2rem;
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+}
+
+.nav-link {
+    color: #ffffff;
+    margin-right: 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: color 0.4s ease;
+}
+
+.nav-link:hover {
+    color: #ffc107; /* Golden hover effect */
+}
+
+.navbar-toggler {
+    border-color: #ffc107;
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+    background-color: #212529;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Elevated dropdown */
+}
+
+.dropdown-item {
+    color: #ffffff;
+    padding: 0.9rem 1.5rem;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background-color: #ffc107;
+}
+/* Welcome Section */
+.welcome-section {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    background: url('../img/add.jpg') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-attachment: fixed;
+    /* Parallax effect */
+}
+
+.welcome-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
+    z-index: 1;
+}
+
+.welcome-section h1 {
+    position: relative;
+    z-index: 2;
+    color: #ffc107;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+    font-size: clamp(2.5rem, 6vw, 4rem); /* Dynamic scaling */
+    font-weight: 800;
+    letter-spacing: 0.1rem;
+}
+.welcome-section h2 {
+    position: relative;
+    z-index: 2;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.welcome-section h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+}
+
+.welcome-section h2 {
+    font-size: clamp(1rem, 2.5vw, 1.75rem);
+    font-weight: 400;
+}
+
+/* Modernized and enhanced search bar with proper alignment */
+.search-bar-container {
+    max-width: 700px;
+    margin: 30px auto;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.search-input {
+    flex: 1; /* Take up the remaining space */
+    padding: 15px 20px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    border: 2px solid transparent;
+    background: linear-gradient(90deg, #ffffff, #f7f7f7);
+    transition: all 0.4s ease;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Elevated shadow */
+    color: #333;
+    margin-right: 10px; /* Space between input and button */
+}
+
+.search-input::placeholder {
+    color: #888;
+    font-style: italic;
+}
+
+.search-input:focus {
+    background: white;
+    border-color: #007bff;
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.4);
+    outline: none;
+}
+
+.clear-search-btn {
+    padding: 12px 25px;
+    border-radius: 50px;
+    background-color: #007bff;
+    color: white;
+    border: 2px solid transparent;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.4s ease;
+}
+
+.clear-search-btn:hover {
+    background-color:#ffc107;
+    transform: scale(1.05); /* Slight scale-up for interactivity */
+    box-shadow: #ffc107;
+}
+
+.clear-search-btn:focus {
+    outline: none;
+    box-shadow: #ffc107;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .search-bar-container {
+        padding: 0 15px;
+        flex-direction: column; /* Stack input and button on smaller screens */
+    }
+
+    .search-input {
+        font-size: 1rem;
+        padding: 12px 20px;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .clear-search-btn {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+}
+  
+
+/* Center Cards */
+.center-cards {
+    display: flex;
+    overflow-x: hidden;
+    /* Hide scrollbar */
+    padding: 20px 0;
+    scroll-behavior: smooth;
+    flex-wrap: nowrap;
+    gap: 15px;
+    /* Spacing between cards */
+}
+
+.center-card {
+    flex: 0 0 auto;
+    width: 270px;
+    margin: 10px;
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.center-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.center-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+.card-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.rating {
+    color: #ffc107;
+    font-size: 1.2rem;
+}
+
+/* Scroll Buttons */
+.scroll-button {
+    background-color: #343a40;
+    border: none;
+    color: white;
+    font-size: 2.5rem;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.scroll-button:hover {
+    background-color: #495057;
+    transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .welcome-section {
+        height: 50vh;
+    }
+
+    .welcome-section h1 {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+    }
+
+    .welcome-section h2 {
+        font-size: clamp(0.9rem, 2vw, 1.3rem);
+    }
+
+    .center-card {
+        width: 200px;
+    }
+}
