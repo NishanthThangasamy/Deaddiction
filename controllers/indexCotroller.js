@@ -133,20 +133,36 @@ exports.getAppointment = async (req, res) => {
     req.session.redirectTo = req.originalUrl;
     return res.redirect('/login');
   }
-  const appointments = await Appointment.find({ patientEmail });
-  const formatTime = (time24) => {
-    const [hours, minutes] = time24.split(':');
-    let hours12 = (hours % 12) || 12;
-    const period = hours < 12 ? 'AM' : 'PM';
-    return `${hours12}:${minutes} ${period}`;
-  };
+  try {
+    // Fetch the single appointment for the logged-in patient
+    const appointment = await Appointment.findOne({ patientEmail });
 
-  appointments.forEach(appointment => {
+    if (!appointment) {
+      return res.render('viewappointment', { appointment: null, username: null });
+    }
+
+    // Extract the username from the appointment
+    const username = appointment.patientName;
+
+    // Helper function to format time
+    const formatTime = (time24) => {
+      const [hours, minutes] = time24.split(':');
+      const hours12 = (hours % 12) || 12;
+      const period = hours < 12 ? 'AM' : 'PM';
+      return `${hours12}:${minutes} ${period}`;
+    };
+
+    // Format the time if it exists
     if (appointment.time) {
       appointment.formattedTime = formatTime(appointment.time);
     }
-  });
-  return res.render('viewappointment', { appointments });
+
+    // Render the view with the fetched data
+    return res.render('viewappointment', { appointment, username });
+  } catch (error) {
+    console.error('Error fetching appointment:', error);
+    return res.render('/');
+  }
 };
 //****************************************************************************** */
 
@@ -171,6 +187,34 @@ exports.cancelAppointment = async (req, res) => {
     return res.status(500).json({ success: false, message: 'Server error, could not delete appointment' });
   }
 };
+
+// ******Reschedule-Appointment ******Reschedule-Appointment ******Reschedule */
+exports.rescheduleAppointment = async (req, res) => {
+  const { appointmentId, newDate } = req.body;
+  // Ensure date is in 'YYYY-MM-DD' format
+  const formattedAppointmentDate = newDate.substring(0, 10);
+  try {
+    // Find the appointment to retrieve the current `reschedule` count
+    const existingAppointment = await Appointment.findById(appointmentId);
+    // Update the appointment using appointmentId
+    const appointment = await Appointment.findByIdAndUpdate(
+      appointmentId,{
+       appointmentDate: formattedAppointmentDate ,
+        status: 'Not Confirmed',
+        reschedule : existingAppointment.reschedule + 1
+    });
+
+    if (appointment) {
+      return res.json({ success: true, message: 'Appointment rescheduled successfully.' });
+    } else {
+     return res.json({ success: false, message: 'Appointment not found.' });
+    }
+  } catch (error) {
+    console.error('Error updating appointment:', error);
+    return res.status(500).json({ success: false, message: 'Internal server error.' });
+  }
+}
+// ************************************************************************************************/
 
 // ******Event ******Event ******Event ******Event ******Event ******Event ******Event ******Event ****** */
 exports.getPEventPage = async (req, res) => {
