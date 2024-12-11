@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Format date as 'YYYY-MM-DD'
     const formattedTomorrow = tomorrow.toISOString().split('T')[0];
 
+    
     // Set the 'min' attribute to tomorrow's date
     eventDateInput.setAttribute('min', formattedTomorrow);
 
